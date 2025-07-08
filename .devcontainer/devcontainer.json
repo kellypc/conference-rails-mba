@@ -1,0 +1,22 @@
+{
+  "name": "conference-rails",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VARIANT": "3.3.5",
+      "NODE_VERSION": "18",
+      "BUNDLER_VERSION": "2.5.7"
+    }
+  },
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "postCreateCommand": "bundle install && yarn install && bin/rails tailwindcss:build && bin/rails db:prepare",
+  "forwardPorts": [3000],
+  "remoteUser": "vscode"
+}
